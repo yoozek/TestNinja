@@ -6,16 +6,32 @@ namespace TestNinja.UnitTests
     [TestFixture]
     public class FizzBuzzTests
     {
-        [Test]
-        [TestCase(15,"FizzBuzz")]
-        [TestCase(3,"Fizz")]
-        [TestCase(5,"Buzz")]
-        [TestCase(1,"1")]
-        public void GetOutput_WhenCalled_ReturnExpectedResult(int number, string expectedResult)
+        public void GetOutput_InputIsDivisibleBy3Or5_ReturnFizz()
         {
-            var result = FizzBuzz.GetOutput(number);
+            var result = FizzBuzz.GetOutput(15);
             
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(result, Is.EqualTo("Fizz"));
+        }
+        
+        public void GetOutput_InputIsDivisibleBy3Only_ReturnFizz()
+        {
+            var result = FizzBuzz.GetOutput(3);
+            
+            Assert.That(result, Is.EqualTo("Fizz"));
+        }
+        
+        public void GetOutput_InputIsDivisibleBy5Only_ReturnFizz()
+        {
+            var result = FizzBuzz.GetOutput(5);
+            
+            Assert.That(result, Is.EqualTo("Buzz"));
+        }
+        
+        public void GetOutput_InputIsNotDivisibleBy3Or5_ReturnTheSameNumber()
+        {
+            var result = FizzBuzz.GetOutput(1);
+            
+            Assert.That(result, Is.EqualTo("1"));
         }
     }
 }
