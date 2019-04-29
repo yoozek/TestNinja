@@ -18,12 +18,17 @@ namespace TestNinja.Mocking
                 bookings.FirstOrDefault(
                     b =>
                         booking.ArrivalDate < b.DepartureDate && b.ArrivalDate < booking.DepartureDate);
-            //bool overlap = ;
+            
             return overlappingBooking == null ? string.Empty : overlappingBooking.Reference;
         }
     }
 
-    public class UnitOfWork
+    public interface IUnitOfWork
+    {
+        IQueryable<T> Query<T>();
+    }
+
+    public class UnitOfWork : IUnitOfWork
     {
         public IQueryable<T> Query<T>()
         {
